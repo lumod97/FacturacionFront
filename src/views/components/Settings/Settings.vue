@@ -24,19 +24,20 @@
         </el-form-item>
       </el-col>
     </el-row>
-    <el-row>
+    <el-row :gutter="20">
       <el-col :span="24">
         <el-input
-          v-model="textarea1"
+          v-model="token"
           autosize
           type="textarea"
-          placeholder="Please input"
+          placeholder="Token here..."
+          disabled
         />
       </el-col>
     </el-row>
-    <el-row>
+    <el-row :gutter="20">
       <el-col class="d-flex justify-content-end">
-        <el-button type="primary"> Enviar </el-button>
+        <el-button @click="getSUNATToken" type="primary"> Generate </el-button>
       </el-col>
     </el-row>
   </el-form>
@@ -50,12 +51,25 @@ export default {
       solKey: "",
       secretId: "",
       secretKey: "",
+      token: "",
     }
   },
   methods:{
     async getSUNATToken(){
-        // const data = await axios.post()
+        let params = {
+            secret_id: this.secretId,
+            secret_key: this.secretKey
+        }
+        try {
+            const {data} = await FApi.post('/settings/get-initial-token', params)
+            this.token = data.access_token
+        } catch (error) {
+            throw error
+        }
+
     }
-  }
+  },
+  mounted() {
+  },
 };
 </script>

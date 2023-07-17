@@ -43,20 +43,10 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import routes from '@/router/index.js'
-import {
-  HomeFilled,
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from "@element-plus/icons-vue";
 export default{
   data(){
     return{
       isCollapse: false,
-      routes: routes.routes
     }
   },
   created() {
@@ -70,7 +60,5 @@ export default{
     /* display: inline-flex !important; */
     /* flex-direction: column !important; */
   min-height: 100vh;
-}
-.full-sidebar{
 }
 </style>
